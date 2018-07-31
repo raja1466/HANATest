@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="CV_CTA_PS_ABSENTEEISM_RY_V97" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <origin/>
+  <descriptions defaultDescription="CV_CTA_PS_ABSENTEEISM_RY_V97"/>
+  <metadata changedAt="2018-06-12 17:16:24.145"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="31"/>
+  <dataSources>
+    <DataSource id="CV_CTA_PS_ABSENTEEISM_V98" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/PS-CMP-TIME-ANALYTICS/calculationviews/CV_CTA_PS_ABSENTEEISM_V98</resourceUri>
+    </DataSource>
+    <DataSource id="CV_CTA_PS_ABSENTEEISM_LEAVE_FREQUENCY" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/PS-CMP-TIME-ANALYTICS/calculationviews/CV_CTA_PS_ABSENTEEISM_LEAVE_FREQUENCY</resourceUri>
+    </DataSource>
+    <DataSource id="CV_CTA_PS_PRODUCTIVITY" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/PS-CMP-TIME-ANALYTICS/calculationviews/CV_CTA_PS_PRODUCTIVITY</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MONTH_INT"/>
+        <viewAttribute id="YEAR_INT"/>
+        <viewAttribute id="YearOverYear"/>
+        <viewAttribute id="CC_Avg_Leaves"/>
+        <viewAttribute id="RC_Total_Leaves"/>
+        <viewAttribute id="Moving_Average"/>
+        <viewAttribute id="Normalised_Leaves"/>
+        <viewAttribute id="CC_Avg_Leaves_Per_Year"/>
+        <viewAttribute id="Normalised_Moving_Average"/>
+        <viewAttribute id="RC_Planned_Leaves"/>
+        <viewAttribute id="RC_Unplanned_Leaves"/>
+        <viewAttribute id="CC_Month_Name"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="YOY_Percentage"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#CV_CTA_PS_ABSENTEEISM_V98">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH_INT" source="MONTH_INT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR_INT" source="YEAR_INT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YearOverYear" source="YearOverYear"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CC_Avg_Leaves" source="CC_Avg_Leaves"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RC_Total_Leaves" source="RC_Total_Leaves"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Moving_Average" source="Moving_Average"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Normalised_Leaves" source="Normalised_Leaves"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CC_Avg_Leaves_Per_Year" source="CC_Avg_Leaves_Per_Year"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Normalised_Moving_Average" source="Normalised_Moving_Average"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RC_Planned_Leaves" source="RC_Planned_Leaves"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RC_Unplanned_Leaves" source="RC_Unplanned_Leaves"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CC_Month_Name" source="CC_Month_Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YOY_Percentage" source="YOY_Percentage"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="Year"/>
+        <viewAttribute id="Month"/>
+        <viewAttribute id="Month_Int"/>
+        <viewAttribute id="Total_Leaves"/>
+        <viewAttribute id="Leave_Occurence_Count"/>
+        <viewAttribute id="Resource_ID"/>
+        <viewAttribute id="workdays"/>
+        <viewAttribute id="Leave_Occurence"/>
+        <viewAttribute id="Year_Int"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#CV_CTA_PS_ABSENTEEISM_LEAVE_FREQUENCY">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Year" source="Year"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Month" source="Month"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Month_Int" source="Month_Int"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Total_Leaves" source="Total_Leaves"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Leave_Occurence_Count" source="Leave_Occurence_Count"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Resource_ID" source="Resource_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="workdays" source="workdays"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Leave_Occurence" source="Leave_Occurence"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Year_Int" source="Year_Int"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3" filterExpressionLanguage="COLUMN_ENGINE">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="Time_OFF"/>
+        <viewAttribute id="YEAR_INT"/>
+        <viewAttribute id="MONTH_INT"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="QUARTER"/>
+        <viewAttribute id="DAY_OF_WEEK"/>
+        <viewAttribute id="Leave_Type"/>
+        <viewAttribute id="Project_Name"/>
+        <viewAttribute id="Resource_Name"/>
+        <viewAttribute id="Resource_ID"/>
+        <viewAttribute id="Resource_Type"/>
+        <viewAttribute id="RC_Total_Leaves"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#CV_CTA_PS_PRODUCTIVITY">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Time_OFF" source="Time_OFF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR_INT" source="YEAR_INT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH_INT" source="MONTH_INT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="QUARTER" source="QUARTER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DAY_OF_WEEK" source="DAY_OF_WEEK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Leave_Type" source="Leave_Type"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Project_Name" source="Project_Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Resource_Name" source="Resource_Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Resource_ID" source="Resource_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Resource_Type" source="Resource_Type"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RC_Total_Leaves" source="RC_Total_Leaves"/>
+      </input>
+      <filter>&quot;Time_OFF&quot; = 'Yes'</filter>
+    </calculationView>
+    <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MONTH_INT" transparentFilter="false"/>
+        <viewAttribute id="YEAR_INT" transparentFilter="false"/>
+        <viewAttribute id="YearOverYear" transparentFilter="false"/>
+        <viewAttribute id="CC_Avg_Leaves" transparentFilter="false"/>
+        <viewAttribute id="RC_Total_Leaves" transparentFilter="false"/>
+        <viewAttribute id="Moving_Average" transparentFilter="false"/>
+        <viewAttribute id="Normalised_Leaves" transparentFilter="false"/>
+        <viewAttribute id="CC_Avg_Leaves_Per_Year" transparentFilter="false"/>
+        <viewAttribute id="Normalised_Moving_Average" transparentFilter="false"/>
+        <viewAttribute id="RC_Planned_Leaves" transparentFilter="false"/>
+        <viewAttribute id="RC_Unplanned_Leaves" transparentFilter="false"/>
+        <viewAttribute id="CC_Month_Name" transparentFilter="false"/>
+        <viewAttribute id="YEAR" transparentFilter="false"/>
+        <viewAttribute id="YOY_Percentage" transparentFilter="false"/>
+        <viewAttribute id="Total_Leaves" transparentFilter="false"/>
+        <viewAttribute id="Leave_Occurence_Count" transparentFilter="false"/>
+        <viewAttribute id="Resource_ID" transparentFilter="false"/>
+        <viewAttribute id="workdays" transparentFilter="false"/>
+        <viewAttribute id="QUARTER" transparentFilter="false"/>
+        <viewAttribute id="DAY_OF_WEEK" transparentFilter="false"/>
+        <viewAttribute id="Leave_Type" transparentFilter="false"/>
+        <viewAttribute id="Project_Name" transparentFilter="false"/>
+        <viewAttribute id="Resource_Name" transparentFilter="false"/>
+        <viewAttribute id="Resource_Type" transparentFilter="false"/>
+        <viewAttribute id="Leave_Occurence" transparentFilter="false"/>
+        <viewAttribute id="Time_OFF" transparentFilter="false"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input emptyUnionBehavior="NO_ROW" node="#Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH_INT" source="MONTH_INT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR_INT" source="YEAR_INT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YearOverYear" source="YearOverYear"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CC_Avg_Leaves" source="CC_Avg_Leaves"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RC_Total_Leaves" source="RC_Total_Leaves"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Moving_Average" source="Moving_Average"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Normalised_Leaves" source="Normalised_Leaves"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CC_Avg_Leaves_Per_Year" source="CC_Avg_Leaves_Per_Year"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Normalised_Moving_Average" source="Normalised_Moving_Average"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RC_Planned_Leaves" source="RC_Planned_Leaves"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RC_Unplanned_Leaves" source="RC_Unplanned_Leaves"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CC_Month_Name" source="CC_Month_Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YOY_Percentage" source="YOY_Percentage"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Total_Leaves" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Leave_Occurence_Count" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Resource_ID" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="workdays" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="QUARTER" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DAY_OF_WEEK" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Leave_Type" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Project_Name" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Resource_Name" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Resource_Type" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Leave_Occurence" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Time_OFF" null="true" value=""/>
+      </input>
+      <input emptyUnionBehavior="NO_ROW" node="#Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH_INT" source="Month_Int"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="YearOverYear" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_Avg_Leaves" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="RC_Total_Leaves" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Moving_Average" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Normalised_Leaves" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_Avg_Leaves_Per_Year" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Normalised_Moving_Average" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="RC_Planned_Leaves" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="RC_Unplanned_Leaves" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CC_Month_Name" source="Month"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="Year"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="YOY_Percentage" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Total_Leaves" source="Total_Leaves"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Leave_Occurence_Count" source="Leave_Occurence_Count"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Resource_ID" source="Resource_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="workdays" source="workdays"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="QUARTER" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DAY_OF_WEEK" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Leave_Type" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Project_Name" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Resource_Name" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Resource_Type" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Leave_Occurence" source="Leave_Occurence"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Time_OFF" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR_INT" source="Year_Int"/>
+      </input>
+      <input emptyUnionBehavior="NO_ROW" node="#Projection_3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH_INT" source="MONTH_INT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR_INT" source="YEAR_INT"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="YearOverYear" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_Avg_Leaves" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RC_Total_Leaves" source="RC_Total_Leaves"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Moving_Average" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Normalised_Leaves" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_Avg_Leaves_Per_Year" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Normalised_Moving_Average" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="RC_Planned_Leaves" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="RC_Unplanned_Leaves" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_Month_Name" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="YOY_Percentage" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Total_Leaves" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Leave_Occurence_Count" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Resource_ID" source="Resource_ID"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="workdays" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="QUARTER" source="QUARTER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DAY_OF_WEEK" source="DAY_OF_WEEK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Leave_Type" source="Leave_Type"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Project_Name" source="Project_Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Resource_Name" source="Resource_Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Resource_Type" source="Resource_Type"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Leave_Occurence" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Time_OFF" source="Time_OFF"/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Union_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="MONTH_INT" order="1" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Month_Int"/>
+        <keyMapping columnObjectName="Union_1" columnName="MONTH_INT"/>
+      </attribute>
+      <attribute id="YEAR_INT" order="2" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Year_Int"/>
+        <keyMapping columnObjectName="Union_1" columnName="YEAR_INT"/>
+      </attribute>
+      <attribute id="CC_Month_Name" order="12" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Month "/>
+        <keyMapping columnObjectName="Union_1" columnName="CC_Month_Name"/>
+      </attribute>
+      <attribute id="YEAR" order="13" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Year"/>
+        <keyMapping columnObjectName="Union_1" columnName="YEAR"/>
+      </attribute>
+      <attribute id="Resource_ID" order="17" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Resource_ID"/>
+        <keyMapping columnObjectName="Union_1" columnName="Resource_ID"/>
+      </attribute>
+      <attribute id="QUARTER" order="19" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Quarter"/>
+        <keyMapping columnObjectName="Union_1" columnName="QUARTER"/>
+      </attribute>
+      <attribute id="DAY_OF_WEEK" order="20" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="DAY_OF_WEEK"/>
+        <keyMapping columnObjectName="Union_1" columnName="DAY_OF_WEEK"/>
+      </attribute>
+      <attribute id="Leave_Type" order="21" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Leave Type"/>
+        <keyMapping columnObjectName="Union_1" columnName="Leave_Type"/>
+      </attribute>
+      <attribute id="Project_Name" order="22" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Project Name"/>
+        <keyMapping columnObjectName="Union_1" columnName="Project_Name"/>
+      </attribute>
+      <attribute id="Resource_Name" order="23" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Resource Name"/>
+        <keyMapping columnObjectName="Union_1" columnName="Resource_Name"/>
+      </attribute>
+      <attribute id="Resource_Type" order="24" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Resource Type"/>
+        <keyMapping columnObjectName="Union_1" columnName="Resource_Type"/>
+      </attribute>
+      <attribute id="Leave_Occurence" order="25" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Occurance Pattern"/>
+        <keyMapping columnObjectName="Union_1" columnName="Leave_Occurence"/>
+      </attribute>
+      <attribute id="Time_OFF" order="26" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Time OFF"/>
+        <keyMapping columnObjectName="Union_1" columnName="Time_OFF"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="YearOverYear" order="3" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Year Over Year Difference"/>
+        <measureMapping columnObjectName="Union_1" columnName="YearOverYear"/>
+      </measure>
+      <measure id="CC_Avg_Leaves" order="4" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Avg. Leaves"/>
+        <measureMapping columnObjectName="Union_1" columnName="CC_Avg_Leaves"/>
+      </measure>
+      <measure id="RC_Total_Leaves" order="5" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Total Leaves"/>
+        <measureMapping columnObjectName="Union_1" columnName="RC_Total_Leaves"/>
+      </measure>
+      <measure id="Moving_Average" order="6" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Moving Average"/>
+        <measureMapping columnObjectName="Union_1" columnName="Moving_Average"/>
+      </measure>
+      <measure id="Normalised_Leaves" order="7" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Average Leaves Per 10 Resources"/>
+        <measureMapping columnObjectName="Union_1" columnName="Normalised_Leaves"/>
+      </measure>
+      <measure id="CC_Avg_Leaves_Per_Year" order="8" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="CC Avg Leaves Per Year"/>
+        <measureMapping columnObjectName="Union_1" columnName="CC_Avg_Leaves_Per_Year"/>
+      </measure>
+      <measure id="Normalised_Moving_Average" order="9" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Mo‌ving Avg. Per 10 Resource"/>
+        <measureMapping columnObjectName="Union_1" columnName="Normalised_Moving_Average"/>
+      </measure>
+      <measure id="RC_Planned_Leaves" order="10" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Planned Leaves"/>
+        <measureMapping columnObjectName="Union_1" columnName="RC_Planned_Leaves"/>
+      </measure>
+      <measure id="RC_Unplanned_Leaves" order="11" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Unplanned Leaves"/>
+        <measureMapping columnObjectName="Union_1" columnName="RC_Unplanned_Leaves"/>
+      </measure>
+      <measure id="YOY_Percentage" order="14" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Year Over Year Leaves Percentage"/>
+        <measureMapping columnObjectName="Union_1" columnName="YOY_Percentage"/>
+      </measure>
+      <measure id="Total_Leaves" order="15" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Total_Leaves"/>
+        <measureMapping columnObjectName="Union_1" columnName="Total_Leaves"/>
+      </measure>
+      <measure id="Leave_Occurence_Count" order="16" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Leave Occurence "/>
+        <measureMapping columnObjectName="Union_1" columnName="Leave_Occurence_Count"/>
+      </measure>
+      <measure id="workdays" order="18" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Workdays"/>
+        <measureMapping columnObjectName="Union_1" columnName="workdays"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="20" y="380"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="190" y="380"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="360" y="379"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="140" y="260"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

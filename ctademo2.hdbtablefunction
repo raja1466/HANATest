@@ -1,0 +1,33 @@
+FUNCTION "PS_WARRANTY_ANALYTICS"."PS-PKG-RY-WORK_DIR::ctademo2" ( ) 
+	RETURNS TABLE (
+	"YEAR" VARCHAR(4),
+	"MONTH" VARCHAR(2),
+	"Leave_Type" VARCHAR(30),
+	"RC_Total_Leaves" double,
+	"CC_Avg_Leaves" double
+	--"Moving_Average" double
+	
+	
+	)
+
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY INVOKER AS
+BEGIN
+/***************************** 
+	Write your function logic
+ *****************************/
+ return
+ select 
+ "YEAR",
+ "MONTH",
+ "Leave_Type",
+ sum("RC_Total_Leaves") as "RC_Total_Leaves",
+ avg("CC_Avg_Leaves") as "CC_Avg_Leaves"
+ --AVG ( sum("CC_Avg_Leaves") ) OVER(  ORDER BY "YEAR","MONTH" ROWS BETWEEN 2 PRECEDING AND CURRENT ROW ) AS "Moving_Average"
+  from "_SYS_BIC"."PS-CMP-TIME-ANALYTICS/CV_CTA_PS_PRODUCTIVITY"
+ 	 --where "YEAR" = '2017'
+ 	 
+ 	 group by "YEAR","MONTH","Leave_Type"
+ 	 
+ 	 order by "YEAR","MONTH";
+END;

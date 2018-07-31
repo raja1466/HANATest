@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="CV_CEA_EXPENSE_ANALYTICS_RY" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED">
+  <origin/>
+  <descriptions defaultDescription="CV_CEA_EXPENSE_ANALYTICS"/>
+  <metadata changedAt="2018-06-18 21:00:25.46"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="47"/>
+  <dataSources>
+    <DataSource id="PS_CEA_EXPENSE_HEADER" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="PS_CMP_TIME_ANALYTICS" columnObjectName="PS_CEA_EXPENSE_HEADER"/>
+    </DataSource>
+    <DataSource id="PS_CEA_EXPENSE_ITEM" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="PS_CMP_TIME_ANALYTICS" columnObjectName="PS_CEA_EXPENSE_ITEM"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="Document_ID"/>
+        <viewAttribute id="Resource_ID"/>
+        <viewAttribute id="Expense_Date"/>
+        <viewAttribute id="Reimbursement_Amount"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#PS_CEA_EXPENSE_HEADER">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Document_ID" source="Document_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Resource_ID" source="Resource_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Expense_Date" source="Expense Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Reimbursement_Amount" source="Reimbursement Amount"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="Document_ID"/>
+        <viewAttribute id="Item_ID"/>
+        <viewAttribute id="Expense_Date"/>
+        <viewAttribute id="Project_ID"/>
+        <viewAttribute id="Expense_Type_ID"/>
+        <viewAttribute id="Expense_Name_ID"/>
+        <viewAttribute id="Resource_ID"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#PS_CEA_EXPENSE_ITEM">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Document_ID" source="Document_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Item_ID" source="Item_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Expense_Date" source="Expense_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Project_ID" source="Project_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Expense_Type_ID" source="Expense_Type_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Expense_Name_ID" source="Expense_Name_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Resource_ID" source="Resource_ID"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="Document_ID" transparentFilter="false"/>
+        <viewAttribute id="Expense_Date" transparentFilter="false"/>
+        <viewAttribute id="Item_ID" transparentFilter="false"/>
+        <viewAttribute id="Expense_Type_ID" transparentFilter="false"/>
+        <viewAttribute id="Expense_Name_ID" transparentFilter="false"/>
+        <viewAttribute id="Reimbursement_Amount" transparentFilter="false"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input emptyUnionBehavior="NO_ROW" node="#Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Document_ID" source="Document_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Expense_Date" source="Expense_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Item_ID" source="Item_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Expense_Type_ID" source="Expense_Type_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Expense_Name_ID" source="Expense_Name_ID"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Reimbursement_Amount" null="true" value=""/>
+      </input>
+      <input emptyUnionBehavior="NO_ROW" node="#Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Document_ID" source="Document_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Expense_Date" source="Expense_Date"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Item_ID" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Expense_Type_ID" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Expense_Name_ID" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Reimbursement_Amount" source="Reimbursement_Amount"/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Union_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="Document_ID" order="1" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Document_ID"/>
+        <keyMapping columnObjectName="Union_1" columnName="Document_ID"/>
+      </attribute>
+      <attribute id="Expense_Date" order="2" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Expense_Date"/>
+        <keyMapping columnObjectName="Union_1" columnName="Expense_Date"/>
+      </attribute>
+      <attribute id="Item_ID" order="3" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Item_ID"/>
+        <keyMapping columnObjectName="Union_1" columnName="Item_ID"/>
+      </attribute>
+      <attribute id="Expense_Type_ID" order="4" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Expense_Type_ID"/>
+        <keyMapping columnObjectName="Union_1" columnName="Expense_Type_ID"/>
+      </attribute>
+      <attribute id="Expense_Name_ID" order="5" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Expense_Name_ID"/>
+        <keyMapping columnObjectName="Union_1" columnName="Expense_Name_ID"/>
+      </attribute>
+      <attribute id="Expense_Date$local">
+        <descriptions defaultDescription="Expense_Date"/>
+        <keyMapping columnObjectName="Union_1" columnName="Expense_Date"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="Reimbursement_Amount" order="6" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Reimbursement_Amount"/>
+        <measureMapping columnObjectName="Union_1" columnName="Reimbursement_Amount"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="/PS-CMP-TIME-ANALYTICS/calculationviews/CV_CTA_TIME_DIMENSION">
+        <attributes>
+          <attributeRef>#Expense_Date$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>DATE_SQL</attributeName>
+        </associatedAttributeNames>
+        <properties joinOperator="Equal" joinType="referential"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="140" y="130"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="60" y="380"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="320" y="380"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape modelObjectName="Union_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="250" y="250"/>
+      </shape>
+      <shape modelObjectName="/PS-CMP-TIME-ANALYTICS/calculationviews/CV_CTA_TIME_DIMENSION" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="716" y="246"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="140" y="280"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

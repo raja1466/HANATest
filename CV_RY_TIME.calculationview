@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="2.3" id="CV_RY_TIME" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" dimensionType="TIME" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <origin/>
+  <descriptions defaultDescription="CV_RY_TIME"/>
+  <metadata changedAt="2017-09-28 16:03:38.483"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="M_TIME_DIMENSION" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="_SYS_BI" columnObjectName="M_TIME_DIMENSION"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews/>
+  <inlineHierarchy xsi:type="Dimension:LeveledHierarchy" id="Gregorian_Hierarchy" aggregateAllNodes="true" nodeStyle="LEVEL_NAME_ENFORCED">
+    <descriptions defaultDescription="Gregorian_Hierarchy"/>
+    <unassignedMemberProperties>
+      <name xsi:nil="true"/>
+      <nullConvertValue xsi:nil="true"/>
+    </unassignedMemberProperties>
+    <levels>
+      <level levelAttribute="#YEAR" levelType="MDLEVEL_TYPE_REGULAR" order="1" orderAttribute="#YEAR" sortDirection="ASC"/>
+      <level levelAttribute="#QUARTER" levelType="MDLEVEL_TYPE_REGULAR" order="2" orderAttribute="#QUARTER"/>
+      <level levelAttribute="#MONTH" levelType="MDLEVEL_TYPE_REGULAR" order="3" orderAttribute="#CALMONTH"/>
+      <level levelAttribute="#WEEK" levelType="MDLEVEL_TYPE_REGULAR" order="4" orderAttribute="#CALWEEK"/>
+      <level levelAttribute="#DATE_SQL" levelType="MDLEVEL_TYPE_REGULAR" order="5" orderAttribute="#DATE_SQL"/>
+    </levels>
+  </inlineHierarchy>
+  <logicalModel id="M_TIME_DIMENSION">
+    <descriptions/>
+    <attributes>
+      <attribute id="YEAR" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="YEAR"/>
+        <keyMapping schemaName="_SYS_BI" columnObjectName="M_TIME_DIMENSION" columnName="YEAR"/>
+      </attribute>
+      <attribute id="QUARTER" key="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="QUARTER"/>
+        <keyMapping schemaName="_SYS_BI" columnObjectName="M_TIME_DIMENSION" columnName="QUARTER"/>
+      </attribute>
+      <attribute id="MONTH" key="true" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MONTH"/>
+        <keyMapping schemaName="_SYS_BI" columnObjectName="M_TIME_DIMENSION" columnName="MONTH"/>
+      </attribute>
+      <attribute id="WEEK" key="true" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WEEK"/>
+        <keyMapping schemaName="_SYS_BI" columnObjectName="M_TIME_DIMENSION" columnName="WEEK"/>
+      </attribute>
+      <attribute id="DATE_SQL" key="true" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DATE_SQL"/>
+        <keyMapping schemaName="_SYS_BI" columnObjectName="M_TIME_DIMENSION" columnName="DATE_SQL"/>
+      </attribute>
+      <attribute id="WEEK_YEAR" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WEEK_YEAR"/>
+        <keyMapping schemaName="_SYS_BI" columnObjectName="M_TIME_DIMENSION" columnName="WEEK_YEAR"/>
+      </attribute>
+      <attribute id="DAY_OF_WEEK" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DAY_OF_WEEK"/>
+        <keyMapping schemaName="_SYS_BI" columnObjectName="M_TIME_DIMENSION" columnName="DAY_OF_WEEK"/>
+      </attribute>
+      <attribute id="CALQUARTER" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CALQUARTER"/>
+        <keyMapping schemaName="_SYS_BI" columnObjectName="M_TIME_DIMENSION" columnName="CALQUARTER"/>
+      </attribute>
+      <attribute id="CALMONTH" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CALMONTH"/>
+        <keyMapping schemaName="_SYS_BI" columnObjectName="M_TIME_DIMENSION" columnName="CALMONTH"/>
+      </attribute>
+      <attribute id="CALWEEK" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CALWEEK"/>
+        <keyMapping schemaName="_SYS_BI" columnObjectName="M_TIME_DIMENSION" columnName="CALWEEK"/>
+      </attribute>
+      <attribute id="DAY" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DAY"/>
+        <keyMapping schemaName="_SYS_BI" columnObjectName="M_TIME_DIMENSION" columnName="DAY"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

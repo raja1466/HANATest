@@ -1,0 +1,69 @@
+FUNCTION "PS_WARRANTY_ANALYTICS"."PS-PKG-RY-WORK_DIR::ctademo1" ( ) 
+	RETURNS TABLE (
+	"YEAR" VARCHAR(4),
+	"MONTH" VARCHAR(2),
+	"CC_Resource_Count" DOUBLE,
+	"RC_Leave_Count" DOUBLE,
+	"Resource_Count" DOUBLE,
+	"Leave_ID" VARCHAR(5),
+	"Project_ID" Varchar(5),
+	--"Task_ID" varchar(5),
+	"Resource_ID" varchar(5),
+	"Date" DATE,
+	"Time_OFF" VARCHAR(3),
+	"Resource_Count1" DOUBLE
+	--"Avg" DOUBLE,
+	--"two_day_average" double
+	
+	
+	)
+	
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY INVOKER AS
+BEGIN
+/***************************** 
+	Write your function logic
+ *****************************/
+ 
+ 
+ return 
+ select 
+    "YEAR" ,
+	"MONTH" ,
+	sum("CC_Resource_Count") as "CC_Resource_Count",
+	sum("RC_Leave_Count") as "RC_Leave_Count",
+	 case when "Time_OFF" = 'No' 
+	 then count("CC_Resource_Count") 
+	 else Null end as "Resource_Count",
+	 "Leave_ID",
+	 "Project_ID",
+	-- "Task_ID",
+	 "Resource_ID",
+	 "Date",
+	 "Time_OFF",
+	 case when "Time_OFF" = 'No'
+	 then  count(Distinct "Resource_ID") else null end as "Resource_Count1"
+	 
+	---- sum("RC_Leave_Count"),(sum("RC_Leave_Count")/sum("Resource_Count1")) as "Avg",
+
+--avg((sum("RC_Leave_Count")/sum("Resource_Count1"))) over(order by "MONTH"  ROWS BETWEEN 1 PRECEDING AND CURRENT ROW ) AS "two_day_average"
+	 
+	
+	
+	from
+	
+	  "_SYS_BIC"."PS-PKG-RY-WORK_DIR/CV_RY_DEMO_01"
+	  
+	
+	GROUP BY 
+	--"Project_ID",
+	--"Resource_ID",
+	"Date",
+	"Project_ID",
+	"Resource_ID",
+	"Leave_ID",
+	"Time_OFF",
+	"MONTH",
+	"YEAR" 
+	;
+END;

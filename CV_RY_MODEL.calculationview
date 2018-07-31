@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="CV_RY_MODEL" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <origin/>
+  <descriptions defaultDescription="CV_RY_MODEL"/>
+  <metadata changedAt="2017-09-28 17:40:14.477"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="42"/>
+  <dataSources>
+    <DataSource id="PS_TB_PRODUCT" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="PS_WARRANTY_ANALYTICS" columnObjectName="PS_TB_PRODUCT"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ProID"/>
+        <viewAttribute id="PRODGRP"/>
+        <viewAttribute id="PRODTYP">
+          <filter xsi:type="AccessControl:SingleValueFilter" including="true" value="FERT"/>
+        </viewAttribute>
+        <viewAttribute id="Pro_Desc"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#PS_TB_PRODUCT">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ProID" source="ProID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PRODGRP" source="PRODGRP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PRODTYP" source="PRODTYP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Pro_Desc" source="Pro_Desc"/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Aggregation_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="ProID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ProID"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="ProID"/>
+      </attribute>
+      <attribute id="PRODGRP" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PRODGRP"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="PRODGRP"/>
+      </attribute>
+      <attribute id="PRODTYP" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PRODTYP"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="PRODTYP"/>
+      </attribute>
+      <attribute id="Pro_Desc" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Pro_Desc"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="Pro_Desc"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="110"/>
+        <rectangleSize/>
+      </shape>
+      <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="200"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

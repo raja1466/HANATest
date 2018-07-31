@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="CV_RY_DEMO_01" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <descriptions defaultDescription="CV_RY_DEMO_01"/>
+  <metadata changedAt="2018-05-18 17:48:23.243"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="39"/>
+  <dataSources>
+    <DataSource id="PS_CTA_TIMELIVE" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="PS_CMP_TIME_ANALYTICS" columnObjectName="PS_CTA_TIMELIVE"/>
+    </DataSource>
+    <DataSource id="M_TIME_DIMENSION" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="_SYS_BI" columnObjectName="M_TIME_DIMENSION"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <descriptions>
+        <comment text=""/>
+      </descriptions>
+      <viewAttributes>
+        <viewAttribute id="Date"/>
+        <viewAttribute id="Leave_ID"/>
+        <viewAttribute id="Project_ID"/>
+        <viewAttribute id="Task_ID"/>
+        <viewAttribute id="Time_OFF"/>
+        <viewAttribute id="Working_Hours"/>
+        <viewAttribute id="Resource_ID"/>
+        <viewAttribute id="Approval_Status"/>
+        <viewAttribute id="Billable"/>
+        <viewAttribute id="Processing_Status"/>
+        <viewAttribute id="Work_Type"/>
+        <viewAttribute id="Leave_Indicator_Value"/>
+        <viewAttribute id="Leave_Indicator_Value_1"/>
+        <viewAttribute id="Resource_Per_Day"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#PS_CTA_TIMELIVE">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Date" source="Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Leave_ID" source="Leave_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Project_ID" source="Project_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Task_ID" source="Task_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Time_OFF" source="Time_OFF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Working_Hours" source="Working_Hours"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Resource_ID" source="Resource_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Approval_Status" source="Approval_Status"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Billable" source="Billable"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Processing_Status" source="Processing_Status"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Work_Type" source="Work_Type"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Leave_Indicator_Value" source="Leave_Indicator_Value"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Leave_Indicator_Value_1" source="Leave_Indicator_Value"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Resource_Per_Day" source="Resource_Per_Day"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CALMONTH"/>
+        <viewAttribute id="CALQUARTER"/>
+        <viewAttribute id="CALWEEK"/>
+        <viewAttribute id="DATE_SQL"/>
+        <viewAttribute id="DAY"/>
+        <viewAttribute id="DAY_INT"/>
+        <viewAttribute id="DAY_OF_WEEK"/>
+        <viewAttribute id="DAY_OF_WEEK_INT"/>
+        <viewAttribute id="MONTH"/>
+        <viewAttribute id="MONTH_INT"/>
+        <viewAttribute id="QUARTER"/>
+        <viewAttribute id="WEEK"/>
+        <viewAttribute id="WEEK_INT"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="YEAR_INT"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#M_TIME_DIMENSION">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH" source="CALMONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CALQUARTER" source="CALQUARTER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CALWEEK" source="CALWEEK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DATE_SQL" source="DATE_SQL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DAY" source="DAY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DAY_INT" source="DAY_INT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DAY_OF_WEEK" source="DAY_OF_WEEK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DAY_OF_WEEK_INT" source="DAY_OF_WEEK_INT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH_INT" source="MONTH_INT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="QUARTER" source="QUARTER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEEK" source="WEEK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEEK_INT" source="WEEK_INT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR_INT" source="YEAR_INT"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinOrder="OUTSIDE_IN" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="Date"/>
+        <viewAttribute id="Leave_ID"/>
+        <viewAttribute id="Project_ID"/>
+        <viewAttribute id="Task_ID"/>
+        <viewAttribute id="Time_OFF"/>
+        <viewAttribute id="Working_Hours"/>
+        <viewAttribute id="Resource_ID"/>
+        <viewAttribute id="Approval_Status"/>
+        <viewAttribute id="Billable"/>
+        <viewAttribute id="Processing_Status"/>
+        <viewAttribute id="Work_Type"/>
+        <viewAttribute id="Leave_Indicator_Value"/>
+        <viewAttribute id="CALMONTH"/>
+        <viewAttribute id="CALQUARTER"/>
+        <viewAttribute id="CALWEEK"/>
+        <viewAttribute id="DATE_SQL"/>
+        <viewAttribute id="DAY"/>
+        <viewAttribute id="DAY_INT"/>
+        <viewAttribute id="DAY_OF_WEEK"/>
+        <viewAttribute id="DAY_OF_WEEK_INT"/>
+        <viewAttribute id="MONTH"/>
+        <viewAttribute id="MONTH_INT"/>
+        <viewAttribute id="QUARTER"/>
+        <viewAttribute id="WEEK"/>
+        <viewAttribute id="WEEK_INT"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="YEAR_INT"/>
+        <viewAttribute id="Leave_Indicator_Value_1"/>
+        <viewAttribute id="Resource_Per_Day"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Date" source="Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Leave_ID" source="Leave_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Project_ID" source="Project_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Task_ID" source="Task_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Time_OFF" source="Time_OFF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Working_Hours" source="Working_Hours"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Resource_ID" source="Resource_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Approval_Status" source="Approval_Status"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Billable" source="Billable"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Processing_Status" source="Processing_Status"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Work_Type" source="Work_Type"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Leave_Indicator_Value" source="Leave_Indicator_Value"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Leave_Indicator_Value_1" source="Leave_Indicator_Value_1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Resource_Per_Day" source="Resource_Per_Day"/>
+      </input>
+      <input node="#Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH" source="CALMONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CALQUARTER" source="CALQUARTER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CALWEEK" source="CALWEEK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DATE_SQL" source="DATE_SQL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DAY" source="DAY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DAY_INT" source="DAY_INT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DAY_OF_WEEK" source="DAY_OF_WEEK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DAY_OF_WEEK_INT" source="DAY_OF_WEEK_INT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH_INT" source="MONTH_INT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="QUARTER" source="QUARTER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEEK" source="WEEK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEEK_INT" source="WEEK_INT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR_INT" source="YEAR_INT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Date" source="DATE_SQL"/>
+      </input>
+      <joinAttribute name="Date"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Join_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="Date" key="true" order="1" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Date"/>
+        <keyMapping columnObjectName="Join_1" columnName="Date"/>
+      </attribute>
+      <attribute id="Leave_ID" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Leave_ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="Leave_ID"/>
+      </attribute>
+      <attribute id="Project_ID" key="true" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Project_ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="Project_ID"/>
+      </attribute>
+      <attribute id="Task_ID" key="true" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Task_ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="Task_ID"/>
+      </attribute>
+      <attribute id="Time_OFF" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Time_OFF"/>
+        <keyMapping columnObjectName="Join_1" columnName="Time_OFF"/>
+      </attribute>
+      <attribute id="Resource_ID" key="true" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Resource_ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="Resource_ID"/>
+      </attribute>
+      <attribute id="Approval_Status" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Approval_Status"/>
+        <keyMapping columnObjectName="Join_1" columnName="Approval_Status"/>
+      </attribute>
+      <attribute id="Billable" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Billable"/>
+        <keyMapping columnObjectName="Join_1" columnName="Billable"/>
+      </attribute>
+      <attribute id="Processing_Status" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Processing_Status"/>
+        <keyMapping columnObjectName="Join_1" columnName="Processing_Status"/>
+      </attribute>
+      <attribute id="Work_Type" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Work_Type"/>
+        <keyMapping columnObjectName="Join_1" columnName="Work_Type"/>
+      </attribute>
+      <attribute id="CALMONTH" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CALMONTH"/>
+        <keyMapping columnObjectName="Join_1" columnName="CALMONTH"/>
+      </attribute>
+      <attribute id="CALQUARTER" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CALQUARTER"/>
+        <keyMapping columnObjectName="Join_1" columnName="CALQUARTER"/>
+      </attribute>
+      <attribute id="CALWEEK" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CALWEEK"/>
+        <keyMapping columnObjectName="Join_1" columnName="CALWEEK"/>
+      </attribute>
+      <attribute id="DATE_SQL" order="16" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DATE_SQL"/>
+        <keyMapping columnObjectName="Join_1" columnName="DATE_SQL"/>
+      </attribute>
+      <attribute id="DAY" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DAY"/>
+        <keyMapping columnObjectName="Join_1" columnName="DAY"/>
+      </attribute>
+      <attribute id="DAY_INT" order="18" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DAY_INT"/>
+        <keyMapping columnObjectName="Join_1" columnName="DAY_INT"/>
+      </attribute>
+      <attribute id="DAY_OF_WEEK" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DAY_OF_WEEK"/>
+        <keyMapping columnObjectName="Join_1" columnName="DAY_OF_WEEK"/>
+      </attribute>
+      <attribute id="DAY_OF_WEEK_INT" order="20" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DAY_OF_WEEK_INT"/>
+        <keyMapping columnObjectName="Join_1" columnName="DAY_OF_WEEK_INT"/>
+      </attribute>
+      <attribute id="MONTH" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MONTH"/>
+        <keyMapping columnObjectName="Join_1" columnName="MONTH"/>
+      </attribute>
+      <attribute id="MONTH_INT" order="22" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MONTH_INT"/>
+        <keyMapping columnObjectName="Join_1" columnName="MONTH_INT"/>
+      </attribute>
+      <attribute id="QUARTER" order="23" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="QUARTER"/>
+        <keyMapping columnObjectName="Join_1" columnName="QUARTER"/>
+      </attribute>
+      <attribute id="WEEK" order="24" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WEEK"/>
+        <keyMapping columnObjectName="Join_1" columnName="WEEK"/>
+      </attribute>
+      <attribute id="WEEK_INT" order="25" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WEEK_INT"/>
+        <keyMapping columnObjectName="Join_1" columnName="WEEK_INT"/>
+      </attribute>
+      <attribute id="YEAR" order="26" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="YEAR"/>
+        <keyMapping columnObjectName="Join_1" columnName="YEAR"/>
+      </attribute>
+      <attribute id="Leave_Indicator_Value_1" order="28" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Leave_Indicator_Value_1"/>
+        <keyMapping columnObjectName="Join_1" columnName="Leave_Indicator_Value_1"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="Working_Hours" order="6" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Working_Hours"/>
+        <measureMapping columnObjectName="Join_1" columnName="Working_Hours"/>
+      </measure>
+      <measure id="Leave_Indicator_Value" order="12" aggregationType="sum" engineAggregation="count" measureType="simple">
+        <descriptions defaultDescription="Leave_Indicator_Value"/>
+        <measureMapping columnObjectName="Join_1" columnName="Leave_Indicator_Value"/>
+      </measure>
+      <measure id="YEAR_INT" order="27" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="YEAR_INT"/>
+        <measureMapping columnObjectName="Join_1" columnName="YEAR_INT"/>
+      </measure>
+      <measure id="Resource_Per_Day" order="29" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Resource_Per_Day"/>
+        <measureMapping columnObjectName="Join_1" columnName="Resource_Per_Day"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="261"/>
+        <rectangleSize height="30" width="140"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="261"/>
+        <rectangleSize height="30" width="140"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="165"/>
+        <rectangleSize height="30" width="140"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

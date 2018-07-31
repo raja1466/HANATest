@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="CV_RY_DEALER_SALES" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED">
+  <origin/>
+  <descriptions defaultDescription="CV_RY_DEALER_SALES"/>
+  <metadata changedAt="2018-03-29 19:39:34.582"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="30"/>
+  <dataSources>
+    <DataSource id="PS_TBTX_SALES" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="PS_WARRANTY_ANALYTICS" columnObjectName="PS_TBTX_SALES"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="SalesProjection">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="Sales_Org"/>
+        <viewAttribute id="Company_Code">
+          <filter xsi:type="AccessControl:SingleValueFilter" including="true" value="PASD"/>
+        </viewAttribute>
+        <viewAttribute id="Prod_ID"/>
+        <viewAttribute id="Order_Qty"/>
+        <viewAttribute id="Units"/>
+        <viewAttribute id="Net_Value"/>
+        <viewAttribute id="Currency"/>
+        <viewAttribute id="VIN"/>
+        <viewAttribute id="Equipment_ID"/>
+        <viewAttribute id="Billing_Date"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#PS_TBTX_SALES">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Sales_Org" source="Sales_Org"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Company_Code" source="Company_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Prod_ID" source="Prod_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Order_Qty" source="Order_Qty"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Units" source="Units"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Net_Value" source="Net_Value"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VIN" source="VIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Equipment_ID" source="Equipment_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Billing_Date" source="Billing_Date"/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="SalesProjection">
+    <descriptions/>
+    <attributes>
+      <attribute id="Sales_Org" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="SalesProjection" columnName="Sales_Org"/>
+      </attribute>
+      <attribute id="Company_Code" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="SalesProjection" columnName="Company_Code"/>
+      </attribute>
+      <attribute id="Units" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="SalesProjection" columnName="Units"/>
+      </attribute>
+      <attribute id="Currency" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="SalesProjection" columnName="Currency"/>
+      </attribute>
+      <attribute id="VIN" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VIN"/>
+        <keyMapping columnObjectName="SalesProjection" columnName="VIN"/>
+      </attribute>
+      <attribute id="Equipment_ID" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Equipment_ID"/>
+        <keyMapping columnObjectName="SalesProjection" columnName="Equipment_ID"/>
+      </attribute>
+      <attribute id="Equipment_ID$local">
+        <descriptions/>
+        <keyMapping columnObjectName="SalesProjection" columnName="Equipment_ID"/>
+      </attribute>
+      <attribute id="Prod_ID$local">
+        <descriptions/>
+        <keyMapping columnObjectName="SalesProjection" columnName="Prod_ID"/>
+      </attribute>
+      <attribute id="Billing_Date$local">
+        <descriptions/>
+        <keyMapping columnObjectName="SalesProjection" columnName="Billing_Date"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="Order_Qty" order="3" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Order_Qty"/>
+        <measureMapping columnObjectName="SalesProjection" columnName="Order_Qty"/>
+      </measure>
+      <measure id="Net_Value" order="5" aggregationType="sum" measureType="simple">
+        <descriptions/>
+        <measureMapping columnObjectName="SalesProjection" columnName="Net_Value"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="/PS-PKG-RY-WORK_DIR/calculationviews/CV_RY_DLR_EQUIPMENT">
+        <attributes>
+          <attributeRef>#Equipment_ID$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>Equipment</attributeName>
+        </associatedAttributeNames>
+        <properties joinOperator="Equal" joinType="referential"/>
+        <associatedAttributeFeatures>
+          <attributeReference attributeName="Equipment" hidden="true"/>
+          <attributeReference attributeName="Year_Of_Construction" hidden="true"/>
+          <attributeReference attributeName="Month_Of_Construction" hidden="true"/>
+          <attributeReference attributeName="Manufacturer" hidden="true"/>
+          <attributeReference attributeName="Manuf_SerialNo" hidden="true"/>
+          <attributeReference attributeName="Object_Number" hidden="true"/>
+          <attributeReference attributeName="Description" hidden="true"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="/PS-PKG-RY-WORK_DIR/calculationviews/CV_RY_MODEL">
+        <attributes>
+          <attributeRef>#Prod_ID$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>ProID</attributeName>
+        </associatedAttributeNames>
+        <properties joinOperator="Equal" joinType="referential"/>
+        <associatedAttributeFeatures>
+          <attributeReference attributeName="PRODGRP" hidden="true"/>
+          <attributeReference attributeName="PRODTYP" hidden="true"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="/PS-PKG-RY-WORK_DIR/calculationviews/CV_RY_TIME">
+        <attributes>
+          <attributeRef>#Billing_Date$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>DATE_SQL</attributeName>
+        </associatedAttributeNames>
+        <properties joinOperator="Equal" joinType="referential"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="140"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="SalesProjection" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="30" y="330"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape modelObjectName="SalesProjection" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="173" y="39"/>
+      </shape>
+      <shape modelObjectName="/PS-PKG-RY-WORK_DIR/calculationviews/CV_RY_DLR_EQUIPMENT" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="462" y="26"/>
+      </shape>
+      <shape modelObjectName="/PS-PKG-RY-WORK_DIR/calculationviews/CV_RY_MODEL" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="452" y="340"/>
+      </shape>
+      <shape modelObjectName="/PS-PKG-RY-WORK_DIR/calculationviews/CV_RY_TIME" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="89" y="287"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

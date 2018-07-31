@@ -1,0 +1,4 @@
+role PS-PKG-RY-WORK_DIR::Ry_Test_Role extends role sap.hana.ide.roles::Developer
+{
+
+}
